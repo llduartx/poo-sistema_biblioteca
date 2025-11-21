@@ -1,0 +1,21 @@
+🛣️ ETAPAS PARA CONCLUIR O PROJETO
+
+1️⃣ Modelagem (O Coração do Sistema)
+🟢 Criar a classe base Pessoa (Herança).
+🟢 Criar a classe Membro (herdando de Pessoa).
+🟢 Criar a classe Livro.
+🟢 Criar a classe Emprestimo.
+
+2️⃣ Lógica de Negócio e Testes (TDD)
+🟡 Criar os testes unitários para garantir que um livro pode ser emprestado, que datas são registradas, etc.
+🟡 Implementar os métodos de adicionar, atualizar e listar dentro de uma classe controladora (ex: Biblioteca).
+
+3️⃣ Persistência de Dados
+🟡 Criar uma classe utilitária GerenciadorArquivos para salvar os Arrays de objetos em arquivos .json e carregar de volta.
+
+4️⃣ Interface (CLI)
+🟡 Criar o menu no Main.ts usando um switch/case para o usuário interagir.
+
+5️⃣ Polimorfismo e Refinamento
+🟡 Garantir que existe um método sobrescrito (ex: exibirDetalhes na classe Pessoa e Membro) para cumprir o requisito de polimorfismo.
+🟡 Gravar o vídeo.
