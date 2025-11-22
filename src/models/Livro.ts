@@ -43,10 +43,10 @@ export class Livro {
 
     const status = this._emprestado ? "Sim" : "Não"
     
-    return `Título: ${this._titulo} \n 
-            Autor: ${this._autor}\n 
-            ISBN: ${this._isbn}\n 
-            Ano de Publicação: ${this._anoPublicacao}\n 
-            Emprestado? ${status}\n`
+    return `Título: ${this._titulo} - 
+            Autor: ${this._autor} - 
+            ISBN: ${this._isbn} - 
+            Ano de Publicação: ${this._anoPublicacao} -  
+            Emprestado? ${status}`
   } 
 }
