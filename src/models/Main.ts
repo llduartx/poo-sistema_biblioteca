@@ -7,68 +7,101 @@ import { GerenciadorArquivos } from "../utils/GerenciadorArquivos";
 const teclado = Prompt();
 const biblioteca = new Biblioteca();
 
-while (true) {
-    console.log("\n=== SISTEMA DE BIBLIOTECA ===");
-    console.log("1. Adicionar Membro");
-    console.log("2. Adicionar Livro");
-    console.log("3. Realizar Empréstimo");
-    console.log("4. Listar Livros Disponíveis");
-    console.log("9. Sair");
-    console.log("=============================");
+function main() {
+    let executando = true
 
-    const opcao: number = +teclado("Escolha uma opção: ");
+    while (executando) {
+        console.log(`\n=== SISTEMA DE BIBLIOTECA ===
+1. Adicionar Livro
+2. Adicionar Membro\n
+3. Listar Livros Disponíveis
+4. Listar Membros\n
+5. Realizar Empréstimo
+6. Devolver Livro\n
+7. Listar Emprestimos Ativos\n
+0. Sair
+=============================
+            `)
 
-    switch (opcao) {
-        case 1:
-            const nome = teclado("Nome: ");
-            const endereco = teclado("Endereço: ");
-            const telefone = teclado("Telefone: ");
-            const matricula = teclado("Matrícula: ");
-            
-            const membro = new Membro(nome, endereco, telefone, matricula);
-            biblioteca.adicionarMembro(membro);
-            break;
+        const opcao: number = +teclado("Escolha uma opção: ");
 
-        case 2:
-            const titulo = teclado("Título: ");
-            const autor = teclado("Autor: ");
-            const editora = teclado("Editora: ");
-            const ano = +teclado("Ano: ");
-            
-            const livro = new Livro(titulo, autor, editora, ano);
-            biblioteca.adicionarLivro(livro);
-            break;
+        switch (opcao) {
 
-        case 3:
-            const matBusca = teclado("Matrícula do membro: ");
-            const editoraBusca = teclado("editora do livro: ");
-            
-            const membroBusca = biblioteca.buscarMembro(matBusca);
-            const livroBusca = biblioteca.buscarLivro(editoraBusca);
-            
-            if (membroBusca && livroBusca) {
-                const resultado = biblioteca.realizarEmprestimo(livroBusca, membroBusca);
-                if (resultado) {
-                    console.log("✅ Empréstimo realizado!");
+            case 1:
+                const titulo = teclado("Título: ");
+                const autor = teclado("Autor: ");
+                const ISBN = teclado("ISBN: ");
+                const ano = +teclado("Ano: ");
+                
+                const livro = new Livro(titulo, autor, ISBN, ano);
+                biblioteca.adicionarLivro(livro);
+                break;
+
+            case 2:
+                const nome = teclado("Nome: ");
+                const endereco = teclado("Endereço: ");
+                const telefone = teclado("Telefone: ");
+                const matricula = teclado("Matrícula: ");
+                
+                const membro = new Membro(nome, endereco, telefone, matricula);
+                biblioteca.adicionarMembro(membro);
+                break;
+
+            case 3:
+                biblioteca.listarLivrosDisponiveis()
+                prompt('\n Pressione ENTER para continuar ...')
+                break;
+                
+            case 4:
+                biblioteca.listarMembros()
+                prompt('\n Pressione ENTER para continuar ...')
+                break;
+
+            case 5:
+                const ISBNEmprestado = prompt('Digite o ISBN do livro: ') || '';
+                const livroEmprestado = biblioteca.buscarLivroPorISNB(ISBNEmprestado)
+
+                if(livroEmprestado) {
+                    const matriculaMembroEmprestado = prompt('Digite a Matricula do Membro: ') ||'';
+                    const membroEmprestado = biblioteca.buscarMembroPorMatricula(matriculaMembroEmprestado)
+                    
+                    if(membroEmprestado) {
+                        biblioteca.realizarEmprestimo(livroEmprestado, membroEmprestado)
+                    } else {
+                        console.log('Membro não encontrado');
+                    }
                 } else {
-                    console.log("❌ Livro já está emprestado!");
+                    console.log('Livro não Encontrado');
                 }
-            } else {
-                console.log("❌ Membro ou livro não encontrado!");
-            }
+                prompt('\n Pressione ENTEER para continuar...')
             break;
 
-        case 4:
-            console.log("\n" + biblioteca.listarLivrosDisponiveis());
+            case 6:
+                console.log("\n--- Devolução de Livro ---");
+                const ISBNDevolucao = prompt('Digite o ISBN do livro: ')|| '';
+                const LivroDevolucao = biblioteca.buscarLivroPorISNB(ISBNDevolucao)
+                
+                if(LivroDevolucao) {
+                    biblioteca.realizarDevolucao(LivroDevolucao)
+                } else {
+                    console.log("Livro não encontrado!");
+                }
+                prompt('\n Pressione ENTER pra continuar...')
+                break;
+                
+            case 7:
+                biblioteca.listarEmprestimos()
+                prompt('\n Pressione ENTER pra continuar...')
             break;
 
-        case 9:
-            GerenciadorArquivos.salvarDados('membros', []);
-            GerenciadorArquivos.salvarDados('livros', []);
-            console.log("Até logo!");
-            break;
+            case 0:
+                executando = false;
+                console.log('Saindo do sistema...');
+                break;
 
-        default:
-            console.log("❌ Opção inválida!");
+            default:
+                console.log("❌ Opção inválida!");
+        }
     }
 }
+main();
