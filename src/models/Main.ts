@@ -32,19 +32,19 @@ while (true) {
         case 2:
             const titulo = teclado("Título: ");
             const autor = teclado("Autor: ");
-            const isbn = teclado("ISBN: ");
+            const editora = teclado("Editora: ");
             const ano = +teclado("Ano: ");
             
-            const livro = new Livro(titulo, autor, isbn, ano);
+            const livro = new Livro(titulo, autor, editora, ano);
             biblioteca.adicionarLivro(livro);
             break;
 
         case 3:
             const matBusca = teclado("Matrícula do membro: ");
-            const isbnBusca = teclado("ISBN do livro: ");
+            const editoraBusca = teclado("editora do livro: ");
             
             const membroBusca = biblioteca.buscarMembro(matBusca);
-            const livroBusca = biblioteca.buscarLivro(isbnBusca);
+            const livroBusca = biblioteca.buscarLivro(editoraBusca);
             
             if (membroBusca && livroBusca) {
                 const resultado = biblioteca.realizarEmprestimo(livroBusca, membroBusca);
