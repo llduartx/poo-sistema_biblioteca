@@ -126,4 +126,33 @@ export class Biblioteca {
     console.log(`Realizada devolução do livro "${livro.titulo}`);
   }
   
+  public removerMembro(matricula: string): boolean {
+  const tamanhoAntes = this._membros.length;
+  this._membros = this._membros.filter(m => m.matricula !== matricula);
+  const foiRemovido = this._membros.length !== tamanhoAntes;
+  if (foiRemovido) {
+    GerenciadorArquivos.salvarDados('membros.json', this._membros);
+    console.log(`Membro(s) com matrícula ${matricula} removido(s).`);
+  } else {
+    console.log(`Membro com matrícula ${matricula} não encontrado.`);
+  }
+  return foiRemovido;
 }
+
+  public removerLivro(isbn: string): boolean {
+    const tamanhoAntes = this._livros.length
+    this._livros = this._livros.filter(l => l.isbn !== isbn)
+    const Removido = this._livros.length !== tamanhoAntes
+
+    if (Removido) {
+      GerenciadorArquivos.salvarDados('livros.json', this._livros)
+      console.log(`Livro(s) com ISBN ${isbn} removido(s).`)
+    } else {
+      console.log(`Livro com ISBN ${isbn} não encontrado.`)
+    }
+
+    return Removido
+  }
+
+}
+

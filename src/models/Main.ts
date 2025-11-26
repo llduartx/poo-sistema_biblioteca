@@ -19,6 +19,8 @@ function main() {
 5. Realizar Empréstimo
 6. Devolver Livro\n
 7. Listar Emprestimos Ativos\n
+8. Remover Membro\n
+9. Remover Livro\n
 0. Sair
 =============================
             `)
@@ -49,20 +51,20 @@ function main() {
 
             case 3:
                 biblioteca.listarLivrosDisponiveis()
-                prompt('\n Pressione ENTER para continuar ...')
+                teclado('\n Pressione ENTER para continuar ...')
                 break;
                 
             case 4:
                 biblioteca.listarMembros()
-                prompt('\n Pressione ENTER para continuar ...')
+                teclado('\n Pressione ENTER para continuar ...')
                 break;
 
             case 5:
-                const ISBNEmprestado = prompt('Digite o ISBN do livro: ') || '';
+                const ISBNEmprestado = teclado('Digite o ISBN do livro: ') || '';
                 const livroEmprestado = biblioteca.buscarLivroPorISNB(ISBNEmprestado)
 
                 if(livroEmprestado) {
-                    const matriculaMembroEmprestado = prompt('Digite a Matricula do Membro: ') ||'';
+                    const matriculaMembroEmprestado = teclado('Digite a Matricula do Membro: ') ||'';
                     const membroEmprestado = biblioteca.buscarMembroPorMatricula(matriculaMembroEmprestado)
                     
                     if(membroEmprestado) {
@@ -73,12 +75,12 @@ function main() {
                 } else {
                     console.log('Livro não Encontrado');
                 }
-                prompt('\n Pressione ENTEER para continuar...')
+                teclado('\n Pressione ENTEER para continuar...')
             break;
 
             case 6:
                 console.log("\n--- Devolução de Livro ---");
-                const ISBNDevolucao = prompt('Digite o ISBN do livro: ')|| '';
+                const ISBNDevolucao = teclado('Digite o ISBN do livro: ')|| '';
                 const LivroDevolucao = biblioteca.buscarLivroPorISNB(ISBNDevolucao)
                 
                 if(LivroDevolucao) {
@@ -86,12 +88,24 @@ function main() {
                 } else {
                     console.log("Livro não encontrado!");
                 }
-                prompt('\n Pressione ENTER pra continuar...')
+                teclado('\n Pressione ENTER pra continuar...')
                 break;
                 
             case 7:
                 biblioteca.listarEmprestimos()
-                prompt('\n Pressione ENTER pra continuar...')
+                teclado('\n Pressione ENTER pra continuar...')
+            break;
+
+            case 8:
+                const matriculaRemover = teclado('Digite a matrícula do membro a ser removido: ') || '';
+                biblioteca.removerMembro(matriculaRemover);
+                teclado('\n Membro removido com sucesso, Pressione ENTER para continuar ...')
+            break;
+
+            case 9:
+                const isbnRemover = teclado('Digite o ISBN do livro a ser removido: ') || '';
+                biblioteca.removerLivro(isbnRemover);
+                teclado('\n Livro removido, Pressione ENTER para continuar ...')
             break;
 
             case 0:

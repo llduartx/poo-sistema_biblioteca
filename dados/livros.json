@@ -12,5 +12,12 @@
     "_isbn": "Alta Books",
     "_anoPublicacao": 2009,
     "_emprestado": false
+  },
+  {
+    "_titulo": "Clean Code",
+    "_autor": "Robert Martin",
+    "_isbn": "12345",
+    "_anoPublicacao": 2008,
+    "_emprestado": false
   }
 ]
