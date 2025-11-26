@@ -11,10 +11,10 @@
 🟢 Implementar os métodos de adicionar, atualizar e listar dentro de uma classe controladora (ex: Biblioteca).
 
 3️⃣ Persistência de Dados
-🟡 Criar uma classe utilitária GerenciadorArquivos para salvar os Arrays de objetos em arquivos .json e carregar de volta.
+🟢 Criar uma classe utilitária GerenciadorArquivos para salvar os Arrays de objetos em arquivos .json e carregar de volta.
 
 4️⃣ Interface (CLI)
-🟡 Criar o menu no Main.ts usando um switch/case para o usuário interagir.
+🟢 Criar o menu no Main.ts usando um switch/case para o usuário interagir.
 
 5️⃣ Polimorfismo e Refinamento
 🟢 Garantir que existe um método sobrescrito (ex: exibirDetalhes na classe Pessoa e Membro) para cumprir o requisito de polimorfismo.
